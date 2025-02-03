@@ -1,0 +1,77 @@
+package com.mycompany.algoritimos.recusividade;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author 1442616
+ */
+public class AlgoritimosRecursividade {
+
+    public static void main(String[] args) {
+
+        Scanner leitor = new Scanner(System.in);
+        int op;
+
+        do {
+
+            System.out.println("\nEscolha Opcao:");
+            System.out.println("\n1. Somar numeros pares ");
+            System.out.println("\n2. Somar todos os elementos de um array");
+            System.out.println("\n3. Contar quantas repeticoes existem em um vetor ");
+            System.out.println("Opcao: ");
+
+            op = leitor.nextInt();
+
+            switch (op) {
+                case 1:
+                    System.out.println("Digite o limite de numeros pares ");
+                    int limite = leitor.nextInt();
+                    System.out.println("Resultado: " + somaPares(limite));
+                    break;
+
+                case 2:
+                    System.out.println("Tamanho do array: ");
+                    int tamanho = leitor.nextInt();
+                    double[] vetor = new double[tamanho];
+                    System.out.println("Digite os elementos do array:");
+                    for (int i = 0; i < tamanho; i++) {
+                        vetor[i] = leitor.nextDouble();
+                    }
+                    System.out.println("Soma dos elementos: " + somaElementos(vetor, tamanho - 1));
+                    break;
+
+                case 3:
+                    System.out.println("Opcao 3 selecionada ");
+                    break;
+
+                case 4:
+                    System.out.println("Opcao 4 saindo ");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+                    break;
+            }
+
+        } while (op != 4);
+    }
+
+    public static int somaPares(int limite) {
+        if (limite == 0) {
+            return 0;
+        } else if (limite % 2 == 0) {
+            return limite + somaPares(limite - 1);
+        } else {
+            return somaPares(limite - 1);
+        }
+    }
+
+    public static double somaElementos(double[] v, int i) {
+        if (i < 0) {
+            return 0;
+        } else {
+            return v[i] + somaElementos(v, i - 1);
+        }
+    }
+}
